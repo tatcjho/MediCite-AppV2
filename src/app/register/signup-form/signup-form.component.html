@@ -1,0 +1,84 @@
+<div class="page__inner h-100">
+  <div class="login-wrapper">
+    <div class="header">
+      <h2>Crear Cuenta</h2>
+    </div>
+    <form [formGroup]="signupForm" novalidate (ngSubmit)="onSubmit(signupForm)">
+
+      <div class="input-row anim">
+        <mat-form-field appearance="outline" class="d-block">
+          <mat-label class="cff">Género</mat-label>
+          <input matInput placeholder="Ingrese sus apellidos" type="text" class="cff" autocomplete="off"
+          formControlName="name">
+         
+          <mat-hint class="cff"></mat-hint>
+        </mat-form-field>
+      </div>
+
+
+      <div class="input-row anim">
+        <mat-form-field appearance="outline" class="d-block">
+          <mat-label class="cff">Fecha de nacimiento</mat-label>
+          <input matInput [matDatepicker]="picker" class="cff">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+          <mat-hint class="cff"></mat-hint>
+          </mat-form-field>
+      </div>
+
+
+        <div class="input-row anim">
+          <mat-form-field appearance="outline" class="d-block">
+            <mat-label class="cff">Dirección</mat-label>
+            <input matInput placeholder="Ingrese su dirección de domicilio" type="text" class="cff" autocomplete="off">
+       
+            <mat-hint class="cff"></mat-hint>
+          </mat-form-field>
+        </div>
+
+        <div class="input-row anim">
+          <mat-form-field appearance="outline" class="d-block">
+            <mat-label class="cff">Teléfono</mat-label>
+            <input matInput placeholder="Ingrese su número de teléfono" type="text" class="cff" autocomplete="off">
+            <mat-hint class="cff"></mat-hint>
+          </mat-form-field>
+        </div>
+
+        <div class="input-row anim">
+          <mat-form-field appearance="outline" class="d-block">
+            <mat-label class="cff">Especialidad Médica</mat-label>
+            <input matInput placeholder="Ingrese su especialidad" type="text" class="cff" autocomplete="off"
+            formControlName="bname">
+            <mat-hint class="cff"></mat-hint>
+          </mat-form-field>
+        </div>
+
+
+        
+
+      <div class="input-row">
+        <button
+          class="btn__signin anim loading-btn"
+          [class.loading]="formSubmitted"
+          type="submit"
+          [disabled]="!signupForm.valid"
+        >
+         Registrarse
+        </button>
+        <button
+          class="btn__cancel anim"
+          routerLink="/welcome"
+          routerDirection="root"
+          [disabled]="formSubmitted"
+        >
+          Cancelar
+        </button>
+      </div>
+    </form>
+    <!-- <div class="footer anim">
+      <div class="links">
+        <p><a routerLink="/welcome" routerDirection="root">Cancel</a></p>
+      </div>
+    </div> -->
+  </div>
+</div>
