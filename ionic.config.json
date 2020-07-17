@@ -1,5 +1,7 @@
 {
   "name": "MediciteAppV2",
-  "integrations": {},
+  "integrations": {
+    "capacitor": {}
+  },
   "type": "angular"
 }
