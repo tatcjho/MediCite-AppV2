@@ -1,34 +1,36 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>crear-consulta</ion-title>
+    <ion-title>Nueva Consulta</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
 
   <ion-list>
+
     <ion-list-header>
       <ion-label>
-        Seleccione el médico
+        Seleccione el área junto con el médico disponible
       </ion-label>
     </ion-list-header>
   
     <ion-item>
-      <ion-label>Gender</ion-label>
-      <ion-select placeholder="Select One">
-        <ion-select-option value="f">Female</ion-select-option>
-        <ion-select-option value="m">Male</ion-select-option>
+      <ion-label>Área & Médico</ion-label>
+      <ion-select interface="action-sheet" placeholder="Select One">
+        <ion-select-option value="f">Ginecologia - Dr. Alvin Yakitori</ion-select-option>
+        <ion-select-option value="m">Pediatria - Dr. Jeffrey Epstein</ion-select-option>
       </ion-select>
     </ion-item>
   
+    <ion-list-header>
+      <ion-label>
+        Seleccione la fecha y hora para su consulta
+      </ion-label>
+    </ion-list-header>
+
     <ion-item>
-      <ion-label>Hair Color</ion-label>
-      <ion-select value="brown" okText="Okay" cancelText="Dismiss">
-        <ion-select-option value="brown">Brown</ion-select-option>
-        <ion-select-option value="blonde">Blonde</ion-select-option>
-        <ion-select-option value="black">Black</ion-select-option>
-        <ion-select-option value="red">Red</ion-select-option>
-      </ion-select>
+      <ion-label>Fecha & Hora</ion-label>
+      <ion-datetime displayFormat="D MMM YYYY H:mm" min="1997" max="2010" value="2005-06-17T11:06Z"></ion-datetime>
     </ion-item>
   
   </ion-list>
