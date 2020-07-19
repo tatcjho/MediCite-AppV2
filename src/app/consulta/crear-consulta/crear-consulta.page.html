@@ -14,10 +14,10 @@
       </ion-label>
     </ion-list-header>
   
-    <ion-item *ngFor="let medico of medicos">
+    <ion-item>
       <ion-label>Área & Médico</ion-label>
       <ion-select interface="action-sheet" placeholder="Select One">
-        <ion-select-option>
+        <ion-select-option *ngFor="let medico of medicos | async">
           <h3>{{medico.especialidad}}</h3>
           <p>{{medico.nombre}}</p>
           <p>{{medico.apellido}}</p>

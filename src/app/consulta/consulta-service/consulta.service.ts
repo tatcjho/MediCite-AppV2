@@ -19,12 +19,24 @@ export class ConsultaService {
   }
 
   getMedicos(): Observable<any[]> {
-    
-    console.log("Entro aquiiiiii");
-    return this.afs.collection('usuarios',
-      ref => ref.where("rol", "==", "medico")
-        .orderBy('especialidad', 'desc')).valueChanges();
 
+    return this.afs.collection('usuarios').valueChanges();
+
+    /*
+    try {
+
+      let aux: any = this.afs.collection('usuarios',
+        ref => ref.where('rol', '==', 'medico')
+          .orderBy('especialidad', 'desc')).valueChanges();
+
+      console.error("Medicos recuperados: ", aux);
+      return aux;
+
+    } catch(error) {
+      console.error("Error", error);
+      throw error;
+    }
+    */
   }
-
+  
 }

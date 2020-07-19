@@ -3,6 +3,7 @@ import { Consulta } from 'src/app/model/Consulta';
 import { ConsultaService } from '../consulta-service/consulta.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
+import { Usuario } from 'src/app/model/Usuario';
 
 @Component({
   selector: 'app-crear-consulta',
@@ -18,6 +19,7 @@ export class CrearConsultaPage implements OnInit {
 
   ngOnInit() {
     this.medicos = this.consultaService.getMedicos();
+    console.log("medicos encontrados: "+this.medicos);
   }
 
   /*showMedico(id: any) {
