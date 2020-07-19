@@ -14,11 +14,14 @@
       </ion-label>
     </ion-list-header>
   
-    <ion-item>
+    <ion-item *ngFor="let medico of medicos">
       <ion-label>Área & Médico</ion-label>
       <ion-select interface="action-sheet" placeholder="Select One">
-        <ion-select-option value="f">Ginecologia - Dr. Alvin Yakitori</ion-select-option>
-        <ion-select-option value="m">Pediatria - Dr. Jeffrey Epstein</ion-select-option>
+        <ion-select-option>
+          <h3>{{medico.especialidad}}</h3>
+          <p>{{medico.nombre}}</p>
+          <p>{{medico.apellido}}</p>
+        </ion-select-option>
       </ion-select>
     </ion-item>
   
