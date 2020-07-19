@@ -14,6 +14,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { ComponentsModule } from './_components/components.module';
 import { SearchComponent } from './_components/search/search.component';
 
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireAuthModule } from '@angular/fire/auth';
+import { AngularFireDatabaseModule } from '@angular/fire/database';
+import { AngularFireStorageModule } from '@angular/fire/storage';
+import { environment } from 'src/environments/environment';
+
+
 
 @NgModule({
   declarations: [
@@ -33,6 +40,10 @@ import { SearchComponent } from './_components/search/search.component';
     HttpModule,
     AppRoutingModule,
     ComponentsModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireAuthModule,
+    AngularFireDatabaseModule,
+    AngularFireStorageModule
   ],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA,
