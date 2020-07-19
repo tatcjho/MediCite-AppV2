@@ -19,7 +19,6 @@ export class CrearConsultaPage implements OnInit {
 
   ngOnInit() {
     this.medicos = this.consultaService.getMedicos();
-    console.log("medicos encontrados: "+this.medicos);
   }
 
   /*showMedico(id: any) {

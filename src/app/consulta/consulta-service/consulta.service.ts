@@ -20,7 +20,8 @@ export class ConsultaService {
 
   getMedicos(): Observable<any[]> {
 
-    return this.afs.collection('usuarios').valueChanges();
+    return this.afs.collection('usuarios',
+    ref => ref.where('rol', '==', 'medico')).valueChanges();
 
     /*
     try {
