@@ -1,5 +1,4 @@
-import { DocumentReference } from '@angular/fire/firestore';
-import { Reference } from '@angular/fire/storage/interfaces';
+import { Rol } from './Rol';
 
 export class Usuario {
 
@@ -16,6 +15,6 @@ export class Usuario {
     peso: string;
     estatura: string;
     pregunta_seguridad: string;
-    rol: Reference;
+    rol: Rol;
 
 }

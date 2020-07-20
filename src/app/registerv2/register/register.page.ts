@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Usuario } from 'src/app/model/Usuario';
 import { ActivatedRoute, Router } from '@angular/router';
 import { RegisterService } from '../services/register.service';
-import * as moment from 'moment';
-import { Reference } from '@angular/fire/storage/interfaces';
+import { Rol } from 'src/app/model/Rol';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+
 
 @Component({
   selector: 'app-register',
@@ -12,7 +13,7 @@ import { Reference } from '@angular/fire/storage/interfaces';
 })
 export class RegisterPage implements OnInit {
 
-  rol: Reference
+  rol: Rol
   
   usuario: Usuario
   
@@ -40,17 +41,19 @@ export class RegisterPage implements OnInit {
       peso: "",
       estatura: "",
       pregunta_seguridad: "",
-      rol: this.rol,
+      rol: this.rol
   
     }
 
-    console.log("subscribe",this.rol)
+    console.log("subscribe",this.rol[0].descripcion)
+
+    
     
   }
 
   redirect(){
 
-    this.RegisterService.insertUsuario(this.usuario)
+    this.RegisterService.insertUsuario(this.usuario, this.rol[0].descripcion)
 
 
   }

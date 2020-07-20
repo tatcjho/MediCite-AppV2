@@ -14,17 +14,20 @@ export class RegisterService {
 
   constructor(private afs: AngularFirestore) { }
 
-  getRol(descripcion: string){
+  getRol(uid: string): Observable<any[]>{
 
-    //return this.afs.collection("roles",ref => ref.where("uid","==",uid)).valueChanges();
-    return this.afs.collection('roles').doc(descripcion).ref;
+    return this.afs.collection("roles",ref => ref.where("uid","==",uid)).valueChanges();
 
   }
 
-  insertUsuario(user: Usuario){
+  insertUsuario(user: Usuario, document: string){
     const refUser = this.afs.collection("usuarios")
     const param = JSON.parse(JSON.stringify(user))
     refUser.doc(user.uid).set(param)
+
+    this.afs.collection("usuarios").doc(user.uid).update({
+      rol: this.afs.collection("roles").doc(document).ref
+    })
   }
 
 

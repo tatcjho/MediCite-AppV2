@@ -5,7 +5,7 @@ import { InteractionService } from './../../_services/interaction.service';
 import { NavController } from '@ionic/angular';
 import { Usuario } from 'src/app/model/Usuario';
 import { Router, NavigationExtras } from '@angular/router';
-import { Reference } from '@angular/fire/storage/interfaces';
+import { Rol } from 'src/app/model/Rol';
 
 // import dialCodesJson from '../../../assets/dummy/dialCodes.json';
 
@@ -18,7 +18,7 @@ export class SendOtpComponent implements OnInit {
   mobileNoForm: FormGroup;
   formSubmitted = false;
 
-  rol: Reference
+  rol: Rol
 
   usuario: Usuario = {
 

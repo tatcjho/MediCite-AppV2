@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { RegisterService } from '../services/register.service';
 import { Router, NavigationExtras } from '@angular/router';
-import { DocumentReference } from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-type-of-register',
@@ -11,7 +10,7 @@ import { DocumentReference } from '@angular/fire/firestore';
 })
 export class TypeOfRegisterPage implements OnInit {
 
-  rol: DocumentReference
+  rol: Observable<any[]>
 
   constructor(private RegisterServices: RegisterService, private router: Router) { }
 
@@ -21,32 +20,31 @@ export class TypeOfRegisterPage implements OnInit {
 
   redirectPaciente(){
 
-    this.rol = this.RegisterServices.getRol("paciente")
+    this.rol = this.RegisterServices.getRol("3")
 
-    
-    
-    let extras: NavigationExtras={
-      state:{
-        rol: this.rol.path
+    this.rol.subscribe(data => {
+      let extras: NavigationExtras={
+        state:{
+          rol: data
+        }
       }
-    }
-
-    this.router.navigate(['registerv2'],extras)
+      this.router.navigate(['registerv2'],extras)
+    }) 
   }
 
   redirectMedico(){
 
-    this.rol = this.RegisterServices.getRol("medico")
+    this.rol = this.RegisterServices.getRol("2")
 
-    
-    
-    let extras: NavigationExtras={
-      state:{
-        rol: this.rol.path
+    this.rol.subscribe(data => {
+      let extras: NavigationExtras={
+        state:{
+          rol: data
+        }
       }
-    }
-
-    this.router.navigate(['registerv2'],extras)
+      this.router.navigate(['registerv2'],extras)
+      console.log("subscribe",extras)
+    }) 
   }
 }
 
