@@ -14,9 +14,10 @@ export class RegisterService {
 
   constructor(private afs: AngularFirestore) { }
 
-  getRol(uid: string): Observable<any[]>{
+  getRol(descripcion: string){
 
-    return this.afs.collection("roles",ref => ref.where("uid","==",uid)).valueChanges();
+    //return this.afs.collection("roles",ref => ref.where("uid","==",uid)).valueChanges();
+    return this.afs.collection('roles').doc(descripcion).ref;
 
   }
 

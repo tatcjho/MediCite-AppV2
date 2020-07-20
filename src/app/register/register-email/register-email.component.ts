@@ -5,7 +5,7 @@ import { NavController } from '@ionic/angular';
 import { InteractionService } from './../../_services/interaction.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Usuario } from 'src/app/model/Usuario';
-import { Rol } from 'src/app/model/Rol';
+import { Reference } from '@angular/fire/storage/interfaces';
 
 @Component({
   selector: 'app-register-email',
@@ -20,7 +20,7 @@ export class RegisterEmailComponent implements OnInit {
 
   usuario: Usuario
 
-  rol: Rol
+  rol: Reference
 
   isdCodes = [
     {
