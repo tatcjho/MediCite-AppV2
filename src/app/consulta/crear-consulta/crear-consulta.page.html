@@ -16,8 +16,8 @@
   
     <ion-item>
       <ion-label>Área & Médico</ion-label>
-      <ion-select interface="action-sheet" placeholder="Seleccione Uno">
-        <ion-select-option *ngFor="let medico of medicos | async">
+      <ion-select [(ngModel)]="medicoSelected" (ionChange)="onChange()" interface="action-sheet" placeholder="Seleccione Uno">
+        <ion-select-option *ngFor="let medico of medicos | async" [value]="medico">
           
           <!--  
           <ion-avatar slot="start">
@@ -25,9 +25,11 @@
           </ion-avatar>
           -->
 
-          <h3>{{medico.especialidad}}, Dr(a).</h3>
+          <h3>{{medico.especialidad}}, Dr(a). </h3>
           <p>{{medico.nombre}} </p>
-          <p>{{medico.apellido}}</p>
+          <p>{{medico.apellido}}, uid </p>
+          <p>{{medico.uid}}</p>
+
         </ion-select-option>
       </ion-select>
     </ion-item>
