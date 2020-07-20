@@ -5,6 +5,8 @@
       <h6 class="anim">Please enter your active mobile number. We'll send OTP to verify.</h6>
     </div>
     <form [formGroup]="mobileNoForm" novalidate (ngSubmit)="onSubmit(mobileNoForm)">
+      
+      <!--
       <div class="input-row anim">
         <mat-form-field appearance="outline" class="d-block">
           <mat-label class="cff">Country Code</mat-label>
@@ -15,10 +17,13 @@
           </mat-select>
         </mat-form-field>
       </div>
+      -->
+
+
       <div class="input-row anim">
         <mat-form-field appearance="outline" class="d-block">
           <mat-label class="cff">Mobile Number</mat-label>
-          <input matInput type="tel" class="cff" autocomplete="off" formControlName="mobileNo">
+          <input [(ngModel)]="usuario.telf" matInput type="tel" class="cff" autocomplete="off" formControlName="mobileNo">
           <mat-hint class="cff">{{mobileErrMsg}}</mat-hint>
         </mat-form-field>
       </div>

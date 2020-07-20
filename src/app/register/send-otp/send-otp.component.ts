@@ -3,6 +3,9 @@ import { Title } from '@angular/platform-browser';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { InteractionService } from './../../_services/interaction.service';
 import { NavController } from '@ionic/angular';
+import { Usuario } from 'src/app/model/Usuario';
+import { Router, NavigationExtras } from '@angular/router';
+import { Rol } from 'src/app/model/Rol';
 
 // import dialCodesJson from '../../../assets/dummy/dialCodes.json';
 
@@ -15,6 +18,28 @@ export class SendOtpComponent implements OnInit {
   mobileNoForm: FormGroup;
   formSubmitted = false;
 
+  rol: Rol
+
+  usuario: Usuario = {
+
+    uid: "",
+    nombre: "",
+    apellido: "",
+    sexo: "",
+    fecha_nac: "",
+    correo: "",
+    contrasena: "",
+    especialidad: "",
+    telf: "",
+    direccion: "",
+    peso: "",
+    estatura: "",
+    pregunta_seguridad: "",
+    rol: this.rol,
+
+  };
+
+  /*
   isdCodes = [
     {
       name: 'Ecuador',
@@ -41,7 +66,7 @@ export class SendOtpComponent implements OnInit {
       dial_code: '+1',
       code: 'US',
     },
-  ];
+  ];*/
 
   mobileErrMsg = '';
   mobileError = false;
@@ -50,9 +75,10 @@ export class SendOtpComponent implements OnInit {
     private title: Title,
     private interact: InteractionService,
     private nav: NavController,
+    private router: Router
     ) {
     this.mobileNoForm = new FormGroup({
-      isdCode: new FormControl('', Validators.required),
+      //isdCode: new FormControl('', Validators.required),
       mobileNo: new FormControl('', [
         Validators.required,
         Validators.pattern(/^0|[1-9]\d*$/),
@@ -63,11 +89,12 @@ export class SendOtpComponent implements OnInit {
   }
 
   ngOnInit() {
+    /*
     const lowCodes = this.isdCodes.map(a => {
       a.code = a.code.toLowerCase();
       return a;
     });
-    this.isdCodes = lowCodes.sort((a, b) => a.name.localeCompare(b.name));
+    this.isdCodes = lowCodes.sort((a, b) => a.name.localeCompare(b.name));*/
   }
 
   ionViewDidEnter() {
@@ -77,10 +104,18 @@ export class SendOtpComponent implements OnInit {
   async checkMobile() {}
 
   async onSubmit(e) {
+
+    let extras: NavigationExtras = {
+      state: {
+        usuario: this.usuario
+      }
+    }
+
     this.formSubmitted = true;
     this.interact.changeAllowance(true);
     setTimeout(() => {
-      this.nav.navigateForward('/register/associate-email');
+      //this.nav.navigateForward('/register/associate-email');
+      this.router.navigate(['/register/associate-email'], extras)
     }, 1500);
   }
 }

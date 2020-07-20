@@ -65,7 +65,15 @@ const routes: Routes = [
   // tslint:disable-next-line:max-line-length
   { path: 'crear-consulta', loadChildren: './consulta/crear-consulta/crear-consulta.module#CrearConsultaPageModule' },
   { path: 'crear-medicamento', loadChildren: './medicamentos/crear-medicamento/crear-medicamento.module#CrearMedicamentoPageModule' },
-  { path: 'listar-medicamento', loadChildren: './medicamentos/listar-medicamento/listar-medicamento.module#ListarMedicamentoPageModule' }
+  { path: 'listar-medicamento', loadChildren: './medicamentos/listar-medicamento/listar-medicamento.module#ListarMedicamentoPageModule' },
+  {
+    path: 'registerv2',
+    loadChildren: () => import('./registerv2/register/register.module').then( m => m.RegisterPageModule)
+  },
+  {
+    path: 'type-of-register',
+    loadChildren: () => import('./registerv2/type-of-register/type-of-register.module').then( m => m.TypeOfRegisterPageModule)
+  }
 
 ];
 

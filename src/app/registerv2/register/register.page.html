@@ -1,0 +1,60 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Por favor ingrese su información</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button>
+      </ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  
+  <ion-item>
+    <app-image-upload [icon]="'camera'" [type]="'camera'" (uploadFinished)="imagenCargada($event)"></app-image-upload>
+  </ion-item>
+  <ion-item>
+    <ion-label position="floating">Cedula</ion-label>
+    <ion-input [(ngModel)]="usuario.uid"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating">Nombre</ion-label>
+    <ion-input [(ngModel)]="usuario.nombre"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating">Apellido</ion-label>
+    <ion-input [(ngModel)]="usuario.apellido"></ion-input>
+  </ion-item>
+  
+  <ion-item>
+    <ion-label position="floating">Dirección</ion-label>
+    <ion-input [(ngModel)]="usuario.direccion"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating">Fecha de Nacimiento</ion-label>
+    <ion-datetime displayFormat="MM DD YYYY" placeholder="Selecciona una Fecha" [(ngModel)]="usuario.fecha_nac"></ion-datetime>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating">Sexo</ion-label>
+    <ion-input [(ngModel)]="usuario.sexo"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating">Correo</ion-label>
+    <ion-input [(ngModel)]="usuario.correo"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating">Contraseña</ion-label>
+    <ion-input [(ngModel)]="usuario.contrasena"></ion-input>
+  </ion-item>
+
+  <div class="ion-padding">
+  <ion-button expand="block" shape="block" (click)="redirect()">Siguente</ion-button>
+  </div>
+    
+</ion-content>

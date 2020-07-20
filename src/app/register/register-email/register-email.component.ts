@@ -3,6 +3,9 @@ import { Title } from '@angular/platform-browser';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { NavController } from '@ionic/angular';
 import { InteractionService } from './../../_services/interaction.service';
+import { Router, ActivatedRoute } from '@angular/router';
+import { Usuario } from 'src/app/model/Usuario';
+import { Rol } from 'src/app/model/Rol';
 
 @Component({
   selector: 'app-register-email',
@@ -14,6 +17,10 @@ export class RegisterEmailComponent implements OnInit {
   loginCredentialForm: FormGroup;
   emailErrMsg = '';
   formSubmitted = false;
+
+  usuario: Usuario
+
+  rol: Rol
 
   isdCodes = [
     {
@@ -32,6 +39,8 @@ export class RegisterEmailComponent implements OnInit {
     private title: Title,
     private interact: InteractionService,
     private nav: NavController,
+    private router: Router,
+    private route: ActivatedRoute
   ) {
     this.loginCredentialForm = new FormGroup({
       userId: new FormControl('', [Validators.required, Validators.email]),
@@ -46,7 +55,36 @@ export class RegisterEmailComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.interact.changeAllowance(false);
+
+    this.route.queryParams.subscribe(params => {
+
+      if(this.router.getCurrentNavigation().extras.state){
+        this.usuario = this.router.getCurrentNavigation().extras.state.usuario
+      }
+
+    })
+
+    this.usuario = {
+
+      uid: "",
+      nombre: "",
+      apellido: "",
+      sexo: "",
+      fecha_nac: "",
+      correo: "",
+      contrasena: "",
+      especialidad: "",
+      telf: this.usuario.telf,
+      direccion: "",
+      peso: "",
+      estatura: "",
+      pregunta_seguridad: "",
+      rol: this.rol,
+  
+    };
+
+    this.interact.changeAllowance(false)
+
   }
 
   ionViewDidEnter() {

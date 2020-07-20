@@ -5,8 +5,8 @@ export class Usuario {
     uid: string;
     nombre: string;
     apellido: string;
-    genero: string;
-    fecha_nac: Date;
+    sexo: string;
+    fecha_nac: string;
     correo: string;
     contrasena: string;
     especialidad: string;
