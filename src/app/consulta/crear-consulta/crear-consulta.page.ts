@@ -20,11 +20,15 @@ export class CrearConsultaPage implements OnInit {
   fechamax: string;
   horas: string[];
 
-  medicos: Observable<any[]>;
+  paciente: Usuario;
+
+  medicos: Observable<Usuario[]>;
+  medicoSelected: Usuario;
 
   constructor(private consultaService: ConsultaService, private route: ActivatedRoute, public router: Router) { }
 
   ngOnInit() {
+
     this.medicos = this.consultaService.getMedicos();
 
     this.consulta.fecha = moment().format();
@@ -37,18 +41,20 @@ export class CrearConsultaPage implements OnInit {
     this.fechamax = moment().add(60, 'd').format();
     this.fechamax = moment(this.fechamax).toISOString();
 
+    //console.log(this.fechamin + "fecha consulta: " + this.consulta.fecha);
+
+
+  }
+
+  onChange() {
+    console.log("Selected: " + this.medicoSelected + " uid: " + this.medicoSelected.uid);
   }
 
   createConsulta() {
-    this.consultaService.createConsulta(this.consulta);
+    this.consulta.estado = "Creada, pendiente de pago";
+    this.consultaService.createConsulta(this.consulta, '0100221256', this.medicoSelected.uid);
     //this.router.navigate(['lista-empleos'])
   }
-
-  /*showMedico(id: any) {
-    this.router.navigate([`usuario/${id}`])
-  }*/
-
-  //Guardar
 
 
 }
