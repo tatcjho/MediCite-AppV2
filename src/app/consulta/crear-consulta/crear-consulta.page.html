@@ -18,6 +18,13 @@
       <ion-label>Área & Médico</ion-label>
       <ion-select interface="action-sheet" placeholder="Seleccione Uno">
         <ion-select-option *ngFor="let medico of medicos | async">
+          
+          <!--  
+          <ion-avatar slot="start">
+            <img [src]="user.image.url">
+          </ion-avatar>
+          -->
+
           <h3>{{medico.especialidad}}, Dr(a).</h3>
           <p>{{medico.nombre}} </p>
           <p>{{medico.apellido}}</p>
@@ -33,9 +40,11 @@
 
     <ion-item>
       <ion-label>Fecha & Hora</ion-label>
-      <ion-datetime displayFormat="D MMM YYYY H:mm" min="1997" max="2010" value="2005-06-17T11:06Z"></ion-datetime>
+      <ion-datetime [(ngModel)]="consulta.fecha" displayFormat="D MMM YYYY H:mm" [min]="fechamin" [max]="fechamax"></ion-datetime>
     </ion-item>
   
   </ion-list>
+
+  <ion-button (click)="createConsulta()" type="submit" expand="full" fill="outline">Siguiente</ion-button>
 
 </ion-content>

@@ -7,7 +7,7 @@ export class Consulta {
     paciente: Usuario;
     medico: Usuario;
     estado: string;
-    fecha: Date;
+    fecha: string;
     diagnostico: Diagnostico;
 
 }

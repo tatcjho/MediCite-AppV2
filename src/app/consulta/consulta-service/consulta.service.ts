@@ -11,33 +11,18 @@ export class ConsultaService {
 
   constructor(private afs: AngularFirestore) { }
 
+  getMedicos(): Observable<any[]> {
+    return this.afs.collection('usuarios',
+      ref => ref.where('rol', '==', 
+      this.afs.collection('roles').doc('medico').ref))
+      .valueChanges();   
+  }
+
   createConsulta(consulta: Consulta) {
     const refConsulta = this.afs.collection('consultas');
     consulta.uid = this.afs.createId();
     const param = JSON.parse(JSON.stringify(consulta));
     refConsulta.doc(consulta.uid).set(param, {merge: true});
-  }
-
-  getMedicos(): Observable<any[]> {
-
-    return this.afs.collection('usuarios',
-    ref => ref.where('rol', '==', 'medico')).valueChanges();
-
-    /*
-    try {
-
-      let aux: any = this.afs.collection('usuarios',
-        ref => ref.where('rol', '==', 'medico')
-          .orderBy('especialidad', 'desc')).valueChanges();
-
-      console.error("Medicos recuperados: ", aux);
-      return aux;
-
-    } catch(error) {
-      console.error("Error", error);
-      throw error;
-    }
-    */
   }
   
 }
