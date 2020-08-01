@@ -1,9 +1,28 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>listar-medicamento</ion-title>
+    <ion-title>Medicamentos</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-
+<ion-content>   
+    <ion-list>
+      <ion-item *ngFor="let medicamento of medicamentos | async; trackBy: trackByFn">
+        <ion-label>
+            <h2>{{medicamento.nombre}}</h2>
+            <p> {{medicamento.concentracion}}</p>
+            <ion-button>Editar</ion-button>
+            <ion-button>Eliminar</ion-button>
+        </ion-label>
+      </ion-item>
+    </ion-list>
+    
+      <ion-fab vertical="top" horizontal="end" slot="fixed">
+        <ion-fab-button (click)="showCrearMedicamento()">
+          <ion-icon name="add"></ion-icon>
+        </ion-fab-button>
+      </ion-fab>
+    
+    
+    
+    
 </ion-content>

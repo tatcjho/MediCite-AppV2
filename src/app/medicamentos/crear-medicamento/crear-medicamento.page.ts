@@ -18,10 +18,10 @@ export class CrearMedicamentoPage implements OnInit {
 
   async guardarMedicamento(){
     console.log(this.medicamento);
-
+    this.ms.saveMedicamento(this.medicamento);
+    
     //let number = await this.ms.    .saveEmpleado2(this.empleo);
     //console.log("Nuevo Registro de medicamento almacenado", number);
     //this.empleoService.saveEmpleo(this.empleo);
   }
-
 }
