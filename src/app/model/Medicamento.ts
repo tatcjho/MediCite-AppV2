@@ -1,5 +1,5 @@
 export class Medicamento {
-    uid: string;
+    uid?: string;
     nombre: string;
     concentracion: string;
 }

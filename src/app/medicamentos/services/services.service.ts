@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { Medicamento } from 'src/app/model/Medicamento';
 import {first, map} from 'rxjs/operators';
 
@@ -9,19 +9,51 @@ import {first, map} from 'rxjs/operators';
 })
 export class ServicesService {
 
+  itemDoc: AngularFirestoreDocument<Medicamento>;
+
   constructor(private afs: AngularFirestore) { }
 
-  //Guardar medicamento en la base
+  //CREATE
   saveMedicamento(medicamento:Medicamento){
-    const refEmpleo = this.afs.collection("medicamento");
+    const refMedicamento = this.afs.collection("medicamento");
     medicamento.uid = this.afs.createId()
     const param = JSON.parse(JSON.stringify(medicamento));
-    refEmpleo.doc(medicamento.uid).set(param,{ merge:true});
+    refMedicamento.doc(medicamento.uid).set(param,{ merge:true});
   }
 
-  //Sirve para listar los medicamentos
+
   getMedicamentos(): Observable<any[]>{
     return this.afs.collection('medicamento').valueChanges();
+  }
+
+  updateDocument(collectionName: string, docID: string, dataObj: any): Promise<any> {
+    return new Promise((resolve, reject) => {
+        this.afs
+            .collection('medicamento')
+            .doc(docID)
+            .update(dataObj)
+            .then((obj: any) => {
+                resolve(obj);
+            })
+            .catch((error: any) => {
+                reject(error);
+            });
+    });
+  }
+
+  deleteMedicamento(docID: string): Promise<any> {
+    return new Promise((resolve, reject) => {
+        this.afs
+            .collection('medicamento')
+            .doc(docID)
+            .delete()
+            .then((obj: any) => {
+                resolve(obj);
+            })
+            .catch((error: any) => {
+                reject(error);
+            });
+    });
   }
 
   getMedicamentosPorNombre(): Observable<any[]>{
@@ -34,6 +66,7 @@ export class ServicesService {
     let itemDoc = this.afs.doc<any>(`medicamento/${uid}`);
     return itemDoc.valueChanges();
   }
+  
 
 
 }

@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ServicesService } from 'src/app/medicamentos/services/services.service';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
+import * as firebase from 'firebase'
+import { Medicamento } from 'src/app/model/Medicamento';
 
 @Component({
   selector: 'app-listar-medicamento',
@@ -14,6 +16,7 @@ export class ListarMedicamentoPage implements OnInit {
     private ms: ServicesService,
     public router: Router) { }
 
+  medicamento:Medicamento;
   medicamentos: Observable<any[]>
   medicamentos2: any[];
 
@@ -30,6 +33,8 @@ export class ListarMedicamentoPage implements OnInit {
   showCrearMedicamento(){
     this.router.navigate([`crear-medicamento`])
   }
+
+
 
 
 }

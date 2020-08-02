@@ -73,7 +73,23 @@ const routes: Routes = [
   {
     path: 'type-of-register',
     loadChildren: () => import('./registerv2/type-of-register/type-of-register.module').then( m => m.TypeOfRegisterPageModule)
+  },  {
+    path: 'editar-medicamento',
+    loadChildren: () => import('./medicamentos/editar-medicamento/editar-medicamento.module').then( m => m.EditarMedicamentoPageModule)
+  },
+  {
+    path: 'medicamento',
+    loadChildren: () => import('./medicamentos/medicamento/medicamento.module').then( m => m.MedicamentoPageModule)
+  },
+  {
+    path: 'listar-md',
+    loadChildren: () => import('./medicamento-detalle/listar-md/listar-md.module').then( m => m.ListarMdPageModule)
+  },
+  {
+    path: 'editar-md',
+    loadChildren: () => import('./medicamento-detalle/editar-md/editar-md.module').then( m => m.EditarMdPageModule)
   }
+
 
 ];
 

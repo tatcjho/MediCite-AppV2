@@ -6,10 +6,10 @@
 
 <ion-content>   
     <ion-list>
-      <ion-item *ngFor="let medicamento of medicamentos | async; trackBy: trackByFn; let i = index">
+      <ion-item *ngFor="let md of mediDetalles | async; trackBy: trackByFn; let i = index">
         <ion-label>
-          <h2>{{medicamento.nombre}}</h2>
-          <p> {{medicamento.concentracion}}</p>
+          <h2>{{md.medicamento}}</h2>
+          <p> {{md.dosis}}</p>
           <div class="item-note" item-end>
     
             <button ion-button clear>
@@ -24,7 +24,7 @@
     </ion-list>
     
       <ion-fab vertical="top" horizontal="end" slot="fixed">
-        <ion-fab-button (click)="showCrearMedicamento()">
+        <ion-fab-button (click)="showCrearMD()">
           <ion-icon name="add"></ion-icon>
         </ion-fab-button>
       </ion-fab>
