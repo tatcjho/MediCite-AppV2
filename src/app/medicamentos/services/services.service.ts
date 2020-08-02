@@ -26,7 +26,7 @@ export class ServicesService {
     return this.afs.collection('medicamento').valueChanges();
   }
 
-  updateDocument(collectionName: string, docID: string, dataObj: any): Promise<any> {
+  updateMedicamento(docID: string, dataObj: any): Promise<any> {
     return new Promise((resolve, reject) => {
         this.afs
             .collection('medicamento')

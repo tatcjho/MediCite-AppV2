@@ -9,16 +9,14 @@ import { MedicamentoDetalle } from '../model/MedicamentoDetalle';
 export class ServicioDetalleService {
 
   constructor(private afs: AngularFirestore) { }
+  
 
-
-  getMediDetalles(): Observable<any[]>{
-    return this.afs.collection('medicamento-detalle').valueChanges();
-
+  getMedicamentos(){
+    return this.afs.collection('medicamento').valueChanges();
   }
 
-  getMedicamentos(): Observable<any[]>{
-    return this.afs.collection('medicamento').valueChanges();
-
+  getMediDetalles(){
+    return this.afs.collection('medicamento-detalle').valueChanges();
   }
 
   createMediDetalle(md: MedicamentoDetalle, medicamentoId: string) {
@@ -31,6 +29,21 @@ export class ServicioDetalleService {
     this.afs.collection("medicamento-detalle").doc(md.uid).update({
       medicamento: this.afs.collection("medicamento").doc(medicamentoId).ref});
 
+  }
+
+  deleteMedicamentoDetalle(docID: string): Promise<any> {
+    return new Promise((resolve, reject) => {
+        this.afs
+            .collection('medicamento-detalle')
+            .doc(docID)
+            .delete()
+            .then((obj: any) => {
+                resolve(obj);
+            })
+            .catch((error: any) => {
+                reject(error);
+            });
+    });
   }
   
 }

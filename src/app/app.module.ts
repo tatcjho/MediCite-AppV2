@@ -22,11 +22,12 @@ import { environment } from 'src/environments/environment';
 
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
     SearchComponent,
-  ],
+    ],
   entryComponents: [
     SearchComponent,
   ],

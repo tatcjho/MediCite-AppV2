@@ -21,7 +21,7 @@ export class MedicamentoDetallePage implements OnInit {
     public router: Router ) { }
 
   ngOnInit() {
-    this.medicamentos = this.mdService.getMedicamentos();
+    //this.medicamentos = this.mdService.getMedicamentos();
   }
 
   onChange() {
@@ -32,6 +32,7 @@ export class MedicamentoDetallePage implements OnInit {
     this.mdService.createMediDetalle(this.md, this.medicamentoSelected.uid);
     //this.router.navigate(['lista-empleos'])
   }
+  
 
 
 

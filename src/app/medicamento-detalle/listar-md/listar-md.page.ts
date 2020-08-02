@@ -13,7 +13,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class ListarMdPage implements OnInit {
 
   mediDetalles: Observable<any[]>
-  medicamentoSelected: Medicamento;
+  
 
 
   constructor(
@@ -25,11 +25,6 @@ export class ListarMdPage implements OnInit {
     this.mediDetalles = this.mdService.getMediDetalles();
   }
 
-
-
-
-  
-
   trackByFn(index,obj){
     return obj.uid;
   }
@@ -38,6 +33,9 @@ export class ListarMdPage implements OnInit {
     this.router.navigate([`medicamento-detalle`])
   }
 
+  deleteMedicamentoDetalle(medicamentoID: string) {
+    this.mdService.deleteMedicamentoDetalle(medicamentoID);
+  }
 
 
 }

@@ -21,11 +21,12 @@ export class ListarMedicamentoPage implements OnInit {
   medicamentos2: any[];
 
 
+
+
   ngOnInit() {
     this.medicamentos = this.ms.getMedicamentos();
   }
-
-   //Se utiliza cuando se tenga una lista observable asincrona
+  
    trackByFn(index,obj){
     return obj.uid;
   }
@@ -34,7 +35,15 @@ export class ListarMedicamentoPage implements OnInit {
     this.router.navigate([`crear-medicamento`])
   }
 
+  deleteMedicamento(medicamentoID: string) {
+    this.ms.deleteMedicamento(medicamentoID);
+  }
 
+
+
+  
+
+  
 
 
 }
