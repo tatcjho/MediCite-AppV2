@@ -50,9 +50,17 @@ export class CrearConsultaPage implements OnInit {
     console.log("Selected: " + this.medicoSelected + " uid: " + this.medicoSelected.uid);
   }
 
-  createConsulta() {
+  async createConsulta() {
+
+    this.consulta.medico = this.medicoSelected;
+
+    // cargar datos de la sesion:
+    console.log("obteniendo datos paciente ");
+    this.consulta.paciente = await this.consultaService.getUsuarioById('0010254658');
+    console.log("paciente = " + this.consulta.paciente.nombre);
+    //
     this.consulta.estado = "Creada, pendiente de pago";
-    this.consultaService.createConsulta(this.consulta, '0100221256', this.medicoSelected.uid);
+    this.consultaService.createConsulta(this.consulta, '0010254658', this.medicoSelected.uid);
     //this.router.navigate(['lista-empleos'])
   }
 
