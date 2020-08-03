@@ -12,6 +12,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class MedicamentoDetallePage implements OnInit {
 
   md: MedicamentoDetalle = new MedicamentoDetalle();
+
   medicamentos: Observable<Medicamento[]>;
   medicamentoSelected: Medicamento;
 
@@ -21,18 +22,19 @@ export class MedicamentoDetallePage implements OnInit {
     public router: Router ) { }
 
   ngOnInit() {
-    //this.medicamentos = this.mdService.getMedicamentos();
+    this.medicamentos = this.mdService.getMedicamentos();
   }
 
   onChange() {
     console.log("Selected: " + this.medicamentoSelected + " uid: " + this.medicamentoSelected.uid);
   }
 
-  createMediDetalle() {
+  async createMediDetalle() {
     this.mdService.createMediDetalle(this.md, this.medicamentoSelected.uid);
+    
+    //console.log("Medicamento = " + this.md.medicamento.uid);
     //this.router.navigate(['lista-empleos'])
   }
-  
 
 
 

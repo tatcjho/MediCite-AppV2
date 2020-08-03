@@ -89,7 +89,11 @@ const routes: Routes = [
   {
     path: 'editar-md',
     loadChildren: () => import('./medicamento-detalle/editar-md/editar-md.module').then( m => m.EditarMdPageModule)
+  },  {
+    path: 'listar-diagnostico',
+    loadChildren: () => import('./diagnostico/listar-diagnostico/listar-diagnostico.module').then( m => m.ListarDiagnosticoPageModule)
   },
+
 
   
 

@@ -13,6 +13,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class ListarMdPage implements OnInit {
 
   mediDetalles: Observable<any[]>
+  md: MedicamentoDetalle;
   
 
 
@@ -23,6 +24,7 @@ export class ListarMdPage implements OnInit {
 
   ngOnInit() {
     this.mediDetalles = this.mdService.getMediDetalles();
+    
   }
 
   trackByFn(index,obj){

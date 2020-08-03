@@ -1,9 +1,44 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>diagnostico</ion-title>
+    <ion-title>Diagnostico</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+
+  <ion-list>
+
+  
+    <ion-item>
+      <ion-label>Medicamento</ion-label>
+      <ion-select [(ngModel)]="detallesSelected" (ionChange)="onChange()" interface="action-sheet" placeholder="Seleccione">
+        <ion-select-option multiple="true" *ngFor="let detalle of detalles | async" [value]="detalle" >
+          
+          <!--  
+          <ion-avatar slot="start">
+            <img [src]="user.image.url">
+          </ion-avatar>
+          -->
+
+          <h3>{{detalle.dosis}} </h3>
+          <p>{{detalle.nombre}}</p>
+          
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item lines="full">
+      <ion-label position="floating">Tipo de diagnostico</ion-label>
+      <ion-input type="text" required [(ngModel)]="diagnostico.tipo"></ion-input>
+    </ion-item>
+
+    <ion-item lines="full">
+      <ion-label position="floating">Descripcion</ion-label>
+      <ion-input type="text" required [(ngModel)]="diagnostico.descripcion"></ion-input>
+    </ion-item>
+
+  </ion-list>
+
+  <ion-button (click)="createDiagnostico()" type="submit" expand="full" fill="outline">Guardar</ion-button>
 
 </ion-content>
