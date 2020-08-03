@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from './services/authentication.service';
-import { auth } from 'firebase';
 import { Router } from '@angular/router';
 
 @Component({
@@ -14,8 +13,26 @@ export class LoginPage implements OnInit {
 
   correo: string
   contrasena: string
+  showPassword = false
+  passwordToggleIcon = 'eye-outline'
 
   ngOnInit() {
+  }
+
+  togglePassword(){
+
+    this.showPassword = !this.showPassword;
+
+    if(this.showPassword==false){
+
+      this.passwordToggleIcon = 'eye-outline'
+
+    }else{
+
+      this.passwordToggleIcon = 'eye-off-outline'
+
+    }
+    
   }
 
   async redirect(){

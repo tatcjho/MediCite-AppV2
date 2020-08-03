@@ -15,6 +15,12 @@ export class RegisterPage implements OnInit {
   rol: Rol
   
   usuario: Usuario
+
+  showPassword = false
+
+  showCard = false
+
+  passwordToggleIcon = 'eye-outline'
   
   constructor(private route: ActivatedRoute, private router: Router, private RegisterService: RegisterService) { }
 
@@ -45,9 +51,13 @@ export class RegisterPage implements OnInit {
   
     }
 
-    console.log("subscribe",this.rol[0].descripcion)
+    if(this.rol[0].uid=='2'){
+      this.showCard =  true
+    }else{
+      this.showCard = false
+    }
 
-    
+    console.log("subscribe",this.rol[0].descripcion)
     
   }
 
@@ -58,6 +68,22 @@ export class RegisterPage implements OnInit {
     this.router.navigate(['home'])
 
 
+  }
+
+  togglePassword(){
+
+    this.showPassword = !this.showPassword;
+
+    if(this.showPassword==false){
+
+      this.passwordToggleIcon = 'eye-outline'
+
+    }else{
+
+      this.passwordToggleIcon = 'eye-off-outline'
+
+    }
+    
   }
 
 }

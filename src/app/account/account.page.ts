@@ -115,7 +115,7 @@ export class AccountPage implements OnInit {
   doLogout() {
 
     this.auth.logout()
-    this.nav.navigateRoot(['/login']);
+    this.nav.navigateRoot(['/welcome']);
   }
 
 }
