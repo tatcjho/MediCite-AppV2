@@ -10,7 +10,7 @@ const routes: Routes = [
   { path: 'login', loadChildren: './login/login.module#LoginPageModule' },
   {
     path: 'register',
-    loadChildren: './register/register.module#RegisterPageModule'
+    loadChildren: './register/register/register.module#RegisterPageModule'
   },
   { path: 'home', loadChildren: './home/home.module#HomePageModule' },
   {
@@ -67,12 +67,12 @@ const routes: Routes = [
   { path: 'crear-medicamento', loadChildren: './medicamentos/crear-medicamento/crear-medicamento.module#CrearMedicamentoPageModule' },
   { path: 'listar-medicamento', loadChildren: './medicamentos/listar-medicamento/listar-medicamento.module#ListarMedicamentoPageModule' },
   {
-    path: 'registerv2',
-    loadChildren: () => import('./registerv2/register/register.module').then( m => m.RegisterPageModule)
+    path: 'register',
+    loadChildren: () => import('./register/register/register.module').then( m => m.RegisterPageModule)
   },
   {
     path: 'type-of-register',
-    loadChildren: () => import('./registerv2/type-of-register/type-of-register.module').then( m => m.TypeOfRegisterPageModule)
+    loadChildren: () => import('./register/type-of-register/type-of-register.module').then( m => m.TypeOfRegisterPageModule)
   },
   {
     path: 'editar-medicamento',
@@ -94,10 +94,6 @@ const routes: Routes = [
     path: 'login',
     loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
   },
-
-  
-
-
 ];
 
 @NgModule({
