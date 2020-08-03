@@ -28,7 +28,7 @@ export class TypeOfRegisterPage implements OnInit {
           rol: data
         }
       }
-      this.router.navigate(['registerv2'],extras)
+      this.router.navigate(['register'],extras)
     }) 
   }
 
@@ -42,7 +42,7 @@ export class TypeOfRegisterPage implements OnInit {
           rol: data
         }
       }
-      this.router.navigate(['registerv2'],extras)
+      this.router.navigate(['register'],extras)
       console.log("subscribe",extras)
     }) 
   }

@@ -4,6 +4,8 @@ import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { Storage } from '@ionic/storage';
 import { InteractionService } from './_services/interaction.service';
+import { Router } from '@angular/router';
+import { AuthenticationService } from 'src/app/login/services/authentication.service';
 
 @Component({
   selector: 'app-root',
@@ -21,6 +23,8 @@ export class AppComponent {
     private statusBar: StatusBar,
     private interact: InteractionService,
     private store: Storage,
+    private router: Router,
+    private auth: AuthenticationService
   ) {
     this.initializeApp();
     window.addEventListener('offline', () => this.offline = true);
@@ -35,6 +39,18 @@ export class AppComponent {
         this.statusBar.backgroundColorByHexString('#3F51B5');
         this.splashScreen.hide();
       }
+
+      this.auth.getCurrentUser().then(user=>{
+        console.log(user)
+        if(user){
+          this.router.navigate(['home'])
+        }else{
+          this.router.navigate(['welcome'])
+        }
+
+      }
+      )
+
     });
     this.setUIMode();
   }

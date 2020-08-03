@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Title } from '@angular/platform-browser';
-import { ActivatedRoute } from '@angular/router';
-import { ToastController, NavController } from '@ionic/angular';
-import { environment } from 'src/environments/environment';
+import { AuthenticationService } from './services/authentication.service';
+import { Router } from '@angular/router';
+import { AlertController } from '@ionic/angular';
+import { async } from '@angular/core/testing';
 
 @Component({
   selector: 'app-login',
@@ -12,70 +11,71 @@ import { environment } from 'src/environments/environment';
 })
 export class LoginPage implements OnInit {
 
-  returnUrl: string;
-  loginForm: FormGroup;
-  pwHidden = true;
-  loginBtnText = 'Sign in';
-  formSubmitted = false;
+  constructor(private auth: AuthenticationService, private router: Router, private alert: AlertController) { }
 
-  constructor(
-    private title: Title,
-    private route: ActivatedRoute,
-    private toast: ToastController,
-    private nav: NavController,
-  ) {
-    this.loginForm = new FormGroup({
-      userId: new FormControl('', [Validators.required, Validators.email]),
-      pw: new FormControl('', [Validators.required]),
-    });
-  }
+  correo: string
+  contrasena: string
+  showPassword = false
+  passwordToggleIcon = 'eye-outline'
 
   ngOnInit() {
-    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/home';
   }
 
-  ionViewDidEnter() {
-    this.title.setTitle('Sign in');
+  togglePassword(){
+
+    this.showPassword = !this.showPassword;
+
+    if(this.showPassword==false){
+
+      this.passwordToggleIcon = 'eye-outline'
+
+    }else{
+
+      this.passwordToggleIcon = 'eye-off-outline'
+
+    }
+    
   }
 
-  getErrorMessage() {
-    return this.loginForm.controls['userId'].hasError('required')
-      ? 'Please enter UserId'
-      : this.loginForm.controls['userId'].hasError('email')
-      ? 'UserId must be a valid email'
-      : this.loginForm.controls['pw'].hasError('required')
-      ? 'Enter Password'
-      : '';
-  }
+  async redirect(){
+    
+    let message = this.auth.emailPasswordLogin(this.correo, this.contrasena)
 
-  onSubmit() {
-    this.loginBtnText = 'Signing in...';
-    this.formSubmitted = true;
+    console.log('Return boleano:', message)
 
-    const loginData = {
-      userId: this.loginForm.value.userId,
-      pw: this.loginForm.value.pw,
-    };
+    message.then(async msg => {
 
-    // Demo Login
-    setTimeout(() => {
-      if (loginData.userId === environment.credentials.login.userid 
-        && loginData.pw === environment.credentials.login.password) {
-        this.nav.navigateForward('/home');
-      } else {
-        this.presentToast('Invalid Login Credentials.');
-        this.loginBtnText = 'Sign in';
-        this.formSubmitted = false;
+      if(msg == false){
+
+        const alert = await this.alert.create({
+          header: 'Ups!',
+          message: 'Revisa tu información parece no ser la correcta',
+          buttons: [
+            {
+              text: 'OK'
+            }
+          ],
+        });
+  
+        await alert.present()
+  
+      }else{
+  
+        this.router.navigate(["home"])
+        console.log('Login exitoso')
+  
+        
+  
       }
-    }, 3000);
+
+
+    })
+
+    
+
+    
+    
 
   }
 
-  async presentToast(message: string) {
-    const toast = await this.toast.create({
-      message,
-      duration: 3000,
-    });
-    toast.present();
-  }
 }

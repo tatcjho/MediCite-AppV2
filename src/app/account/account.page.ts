@@ -4,7 +4,7 @@ import { NavController, AlertController, ModalController, ToastController } from
 import { Storage } from '@ionic/storage';
 import { SETTINGS } from '../app.global';
 import { InteractionService } from '../_services/interaction.service';
-// import { TopicsComponent } from '../_components/topics/topics.component';
+import { AuthenticationService } from 'src/app/login/services/authentication.service';
 
 @Component({
   selector: 'app-account',
@@ -26,6 +26,7 @@ export class AccountPage implements OnInit {
     private modal: ModalController,
     private store: Storage,
     private interact: InteractionService,
+    private auth: AuthenticationService
   ) { }
 
   ngOnInit() {
@@ -112,7 +113,9 @@ export class AccountPage implements OnInit {
   }
 
   doLogout() {
-    this.nav.navigateRoot(['/login']);
+
+    this.auth.logout()
+    this.nav.navigateRoot(['/welcome']);
   }
 
 }
