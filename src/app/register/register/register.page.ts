@@ -20,6 +20,8 @@ export class RegisterPage implements OnInit {
 
   showCard = false
 
+  password: string
+
   passwordToggleIcon = 'eye-outline'
   
   constructor(private route: ActivatedRoute, private router: Router, private RegisterService: RegisterService) { }
@@ -40,13 +42,11 @@ export class RegisterPage implements OnInit {
       sexo: "",
       fecha_nac: "",
       correo: "",
-      contrasena: "",
       especialidad: "",
       telf: "",
       direccion: "",
       peso: "",
       estatura: "",
-      pregunta_seguridad: "",
       rol: this.rol
   
     }
@@ -63,7 +63,7 @@ export class RegisterPage implements OnInit {
 
   redirect(){
 
-    this.RegisterService.insertUsuario(this.usuario, this.rol[0].descripcion)
+    this.RegisterService.insertUsuario(this.usuario, this.rol[0].descripcion, this.password)
     
     this.router.navigate(['home'])
 

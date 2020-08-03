@@ -53,13 +53,15 @@ export class AuthenticationService {
 
   /***************************************   EMAIL LOGIN *********************************/
 
-  async emailPasswordLogin(email: string, password: string): Promise<void> {
+  async emailPasswordLogin(email: string, password: string){
     try {
       const emailCredential = firebase.auth.EmailAuthProvider.credential(email, password);
       const firebaseUser = await firebase.auth().signInWithCredential(emailCredential);
-      return await this.updateUserData(firebaseUser.user, "email");
+      console.log('LOGIN EXITOSO: ',await this.updateUserData(firebaseUser.user, "email"))
+      return true
     } catch (err) {
-      return err;
+      console.log('ERROR LOGIN:', err)
+      return false;
     } 
   } 
 

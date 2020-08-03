@@ -26,11 +26,11 @@ export class RegisterService {
 
   }
 
-  async insertUsuario(user: Usuario, document: string){
+  async insertUsuario(user: Usuario, document: string, password: string){
 
     try{
 
-      const uid = await this.afAuth.createUserWithEmailAndPassword(user.correo, user.contrasena);
+      const uid = await this.afAuth.createUserWithEmailAndPassword(user.correo, password);
       user.uid = uid.user.uid
 
       const refUser = this.afs.collection("usuarios")

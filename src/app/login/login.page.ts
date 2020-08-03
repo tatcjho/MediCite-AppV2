@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from './services/authentication.service';
 import { Router } from '@angular/router';
+import { AlertController } from '@ionic/angular';
+import { async } from '@angular/core/testing';
 
 @Component({
   selector: 'app-login',
@@ -9,7 +11,7 @@ import { Router } from '@angular/router';
 })
 export class LoginPage implements OnInit {
 
-  constructor(private auth: AuthenticationService, private router: Router) { }
+  constructor(private auth: AuthenticationService, private router: Router, private alert: AlertController) { }
 
   correo: string
   contrasena: string
@@ -37,17 +39,41 @@ export class LoginPage implements OnInit {
 
   async redirect(){
     
-    const messege = this.auth.emailPasswordLogin(this.correo, this.contrasena)
+    let message = this.auth.emailPasswordLogin(this.correo, this.contrasena)
 
-    if(messege===undefined){
+    console.log('Return boleano:', message)
 
-      console.log(messege, "Correo o contraseña incorrectos")
+    message.then(async msg => {
 
-    }else{
+      if(msg == false){
 
-      this.router.navigate(["home"])
+        const alert = await this.alert.create({
+          header: 'Ups!',
+          message: 'Revisa tu información parece no ser la correcta',
+          buttons: [
+            {
+              text: 'OK'
+            }
+          ],
+        });
+  
+        await alert.present()
+  
+      }else{
+  
+        this.router.navigate(["home"])
+        console.log('Login exitoso')
+  
+        
+  
+      }
 
-    }
+
+    })
+
+    
+
+    
     
 
   }
