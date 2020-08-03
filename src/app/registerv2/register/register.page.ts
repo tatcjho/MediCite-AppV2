@@ -3,7 +3,6 @@ import { Usuario } from 'src/app/model/Usuario';
 import { ActivatedRoute, Router } from '@angular/router';
 import { RegisterService } from '../services/register.service';
 import { Rol } from 'src/app/model/Rol';
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 
 @Component({
@@ -29,6 +28,7 @@ export class RegisterPage implements OnInit {
     this.usuario = {
 
       uid: "",
+      cedula: "",
       nombre: "",
       apellido: "",
       sexo: "",
@@ -54,6 +54,8 @@ export class RegisterPage implements OnInit {
   redirect(){
 
     this.RegisterService.insertUsuario(this.usuario, this.rol[0].descripcion)
+    
+    this.router.navigate(['home'])
 
 
   }

@@ -67,6 +67,7 @@ export class RegisterEmailComponent implements OnInit {
     this.usuario = {
 
       uid: "",
+      cedula: "",
       nombre: "",
       apellido: "",
       sexo: "",

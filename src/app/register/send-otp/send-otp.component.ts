@@ -23,6 +23,7 @@ export class SendOtpComponent implements OnInit {
   usuario: Usuario = {
 
     uid: "",
+    cedula: "",
     nombre: "",
     apellido: "",
     sexo: "",

@@ -1,10 +1,13 @@
 import { Injectable } from '@angular/core';
-
+import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { Usuario } from 'src/app/model/Usuario';
+import { switchMap, first, take, map } from "rxjs/operators";
+import * as firebase from "firebase/app";
+import { Platform } from '@ionic/angular';
+import { environment } from 'src/environments/environment';
 
-//import { Event } from '../models/event';
 
 
 @Injectable({
@@ -12,7 +15,10 @@ import { Usuario } from 'src/app/model/Usuario';
 })
 export class RegisterService {
 
-  constructor(private afs: AngularFirestore) { }
+  constructor(private afAuth: AngularFireAuth,
+    private afs: AngularFirestore,
+    private platform: Platform,
+) { }
 
   getRol(uid: string): Observable<any[]>{
 
@@ -20,15 +26,26 @@ export class RegisterService {
 
   }
 
-  insertUsuario(user: Usuario, document: string){
-    const refUser = this.afs.collection("usuarios")
-    const param = JSON.parse(JSON.stringify(user))
-    refUser.doc(user.uid).set(param)
+  async insertUsuario(user: Usuario, document: string){
 
-    this.afs.collection("usuarios").doc(user.uid).update({
-      rol: this.afs.collection("roles").doc(document).ref
-    })
+    try{
+
+      const uid = await this.afAuth.createUserWithEmailAndPassword(user.correo, user.contrasena);
+      user.uid = uid.user.uid
+
+      const refUser = this.afs.collection("usuarios")
+      const param = JSON.parse(JSON.stringify(user))
+      refUser.doc(user.uid).set(param)
+
+      this.afs.collection("usuarios").doc(user.uid).update({
+        rol: this.afs.collection("roles").doc(document).ref
+      })
+
+
+    }catch(error){
+
+      console.log('Error on register user', error);
+      
+    }
   }
-
-
 }

@@ -90,6 +90,10 @@ const routes: Routes = [
     path: 'editar-md',
     loadChildren: () => import('./medicamento-detalle/editar-md/editar-md.module').then( m => m.EditarMdPageModule)
   },
+  {
+    path: 'login',
+    loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
+  },
 
   
 
