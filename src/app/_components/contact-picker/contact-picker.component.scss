@@ -74,8 +74,8 @@ ion-item {
         right: 0;
         top: 0;
         bottom: 0;
-        -webkit-mask: url('../../../assets/svg/ios-checkmark-circle.svg') no-repeat center;
-        mask: url('../../../assets/svg/ios-checkmark-circle.svg') no-repeat center;
+        -webkit-mask: url('src/assets/svg/ios-checkmark-circle.svg') no-repeat center;
+        mask: url('src/assets/svg/ios-checkmark-circle.svg') no-repeat center;
         -webkit-mask-size: 50px;
         mask-size: 50px;
         background-color: var(--ion-color-primary);

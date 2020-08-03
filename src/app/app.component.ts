@@ -43,7 +43,7 @@ export class AppComponent {
       this.auth.getCurrentUser().then(user=>{
         console.log(user)
         if(user){
-          this.router.navigate(['home'])
+          //this.router.navigate(['home'])
         }else{
           this.router.navigate(['welcome'])
         }

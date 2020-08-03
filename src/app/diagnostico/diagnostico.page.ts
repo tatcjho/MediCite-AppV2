@@ -24,15 +24,15 @@ export class DiagnosticoPage implements OnInit {
     public router: Router ) { }
 
   ngOnInit() {
-    this.detalles = this.diagService.getDetalle();
+    //this.detalles = this.diagService.getDetalle();
   }
 
   onChange() {
-    console.log("Selected: " + this.detallesSelected + " uid: " + this.detallesSelected);
+    //console.log("Selected: " + this.detallesSelected + " uid: " + this.detallesSelected);
   }
 
   async createDiagnostico() {
-    this.diagService.createDiagnostico(this.diagnostico,this.detallesSelected.uid);
+    //this.diagService.createDiagnostico(this.diagnostico,this.detallesSelected.uid);
     
     //console.log("Medicamento = " + this.md.medicamento.uid);
     //this.router.navigate(['lista-empleos'])
