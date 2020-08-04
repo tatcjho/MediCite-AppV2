@@ -1,14 +1,10 @@
 <ion-header class="flat">
   <ion-toolbar class="colored">
-    <ion-buttons slot="start">
-      <ion-button color="light" routerDirection="forward" routerLink="/account">
-        <ion-icon name="information-circle-outline"></ion-icon>
-      </ion-button>
-    </ion-buttons>
-    <ion-title color="light" text-center>Inicio</ion-title>
+    
+    <img src="assets/images/logoBlanco.png"  width="170px" height="48px" text-center>
     <ion-buttons slot="end">
-      <ion-button color="light" (click)="initSearch()">
-        <ion-icon name="search" ></ion-icon>
+      <ion-button color="light" routerLink="/account">
+        <ion-icon name="menu" ></ion-icon>
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
@@ -178,151 +174,28 @@
     </ion-list>
   </section>
   <!-- Orders -->
-  <section>
-    <ion-label class="section__title" slot="start">
-      Your Orders
-      <ion-text class="more-link" text-right routerLink="/shopping/order-history" routerDirection="forward">View All
-      </ion-text>
-    </ion-label>
 
-    <ion-slides class="slides__dashboard orders" [options]="ordersSlideOpts">
-      <ion-slide>
-        <ion-list class="orders-list">
-          <ion-item lines="inset">
-            <ion-thumbnail slot="end">
-              <img src="assets/images/medkit.png">
-            </ion-thumbnail>
-            <ion-label text-wrap>
-              <ion-text color="primary">
-                <h3>ST JOHNS FIRST AID SJF P5</h3>
-              </ion-text>
-              <p>First Aid Kit (Workplace, Vehicle)</p>
-              <small>Oct 31, 2018</small>
-            </ion-label>
-          </ion-item>
-          <ion-item lines="none" detail>
-            <ion-label>
-              <small>Track Order</small>
-            </ion-label>
-          </ion-item>
-        </ion-list>
-      </ion-slide>
-    </ion-slides>
-  </section>
-  <!-- Desktop app -->
-  <section>
-    <div class="dektop-app clickable">
-      <h5>Continue work from your desktop.</h5>
-      <p>Tap to know more.</p>
-    </div>
-  </section>
   <!-- Deals -->
   <section *ngIf="dealLoaded">
     <ion-label class="section__title" slot="start">
-      Latest Deals
-      <ion-text class="more-link" text-right routerLink="/marketplace" routerDirection="forward">View All</ion-text>
+     Farmacias Asociadas
+      <ion-text class="more-link" text-right routerLink="/marketplace" routerDirection="forward">Ver</ion-text>
     </ion-label>
-    <ion-slides class="slides__dashboard deals" [options]="dealsSlideOpts">
-      <ion-slide>
-        <ion-list class="deals-list">
-          <ion-item lines="inset" (click)="selectDeal(deals[0])">
-            <ion-thumbnail slot="start">
-              <img [src]="deals[0].media[0].url" alt="deal">
-            </ion-thumbnail>
-            <ion-label text-wrap>
-              <ion-text color="primary">
-                <h3>{{deals[0].title}}</h3>
-              </ion-text>
-              <p>{{deals[0].description}}</p>
-              <small>By {{deals[0].corp.name}}</small>
-            </ion-label>
-          </ion-item>
-          <ion-item lines="inset" (click)="selectDeal(deals[1])">
-            <ion-thumbnail slot="start">
-              <img [src]="deals[1].media[0].url" alt="deal">
-            </ion-thumbnail>
-            <ion-label text-wrap>
-              <ion-text color="primary">
-                <h3>{{deals[1].title}}</h3>
-              </ion-text>
-              <p>{{deals[1].description}}</p>
-              <small>By {{deals[1].corp.name}}</small>
-            </ion-label>
-          </ion-item>
-        </ion-list>
-      </ion-slide>
-      <ion-slide>
-        <ion-list class="deals-list">
-          <ion-item lines="inset" (click)="selectDeal(deals[2])">
-            <ion-thumbnail slot="start">
-              <img [src]="deals[2].media[0].url" alt="deal">
-            </ion-thumbnail>
-            <ion-label text-wrap>
-              <ion-text color="primary">
-                <h3>{{deals[2].title}}</h3>
-              </ion-text>
-              <p>{{deals[2].description}}</p>
-              <small>By {{deals[2].corp.name}}</small>
-            </ion-label>
-          </ion-item>
-          <ion-item lines="inset" (click)="selectDeal(deals[3])">
-            <ion-thumbnail slot="start">
-              <img [src]="deals[3].media[0].url" alt="deal">
-            </ion-thumbnail>
-            <ion-label text-wrap>
-              <ion-text color="primary">
-                <h3>{{deals[3].title}}</h3>
-              </ion-text>
-              <p>{{deals[3].description}}</p>
-              <small>By {{deals[3].corp.name}}</small>
-            </ion-label>
-          </ion-item>
-        </ion-list>
-      </ion-slide>
-      <ion-slide>
-        <ion-list class="deals-list">
-          <ion-item lines="inset" (click)="selectDeal(deals[4])">
-            <ion-thumbnail slot="start">
-              <img [src]="deals[4].media[0].url" alt="deal">
-            </ion-thumbnail>
-            <ion-label text-wrap>
-              <ion-text color="primary">
-                <h3>{{deals[4].title}}</h3>
-              </ion-text>
-              <p>{{deals[4].description}}</p>
-              <small>By {{deals[4].corp.name}}</small>
-            </ion-label>
-          </ion-item>
-          <ion-item lines="inset" (click)="selectDeal(deals[5])">
-            <ion-thumbnail slot="start">
-              <img [src]="deals[5].media[0].url" alt="deal">
-            </ion-thumbnail>
-            <ion-label text-wrap>
-              <ion-text color="primary">
-                <h3>{{deals[5].title}}</h3>
-              </ion-text>
-              <p>{{deals[5].description}}</p>
-              <small>By {{deals[5].corp.name}}</small>
-            </ion-label>
-          </ion-item>
-        </ion-list>
-      </ion-slide>
-    </ion-slides>
+  
   </section>
   
   <!-- Privacy policy -->
   <section class="announcement static" *ngIf="1">
-    <div class="close-btn" (click)="hideBanner()">&times;</div>
+    <div class="close-btn">&times;</div>
     <div class="data-policies">
-      <h4>Your Data, Our Concern.</h4>
-      <p>A privacy policy is a statement or a legal document (in privacy law) that discloses some or all of the ways a
-        party gathers, uses, discloses, and manages a customer or client's data. It fulfills a legal requirement to
-        protect a customer or client's privacy.</p>
-      <p>Click to read more.</p>
+      <h4>Sus datos, nuestra preocupación</h4>
+      <p>Una política de privacidad es una declaración o un documento legal (en la ley de privacidad) que revela algunas o todas las formas en que un
+        party recopila, usa, divulga y administra los datos de un cliente o cliente. Cumple un requisito legal para
+        proteger a un cliente o la privacidad del cliente. </p>
 
       <div class="act">
-        <button>Privacy Policies</button>
-        <button>Terms of Use</button>
+        <button>Políticas de Privacidad</button>
+        <button>Términos de uso</button>
       </div>
     </div>
   </section>

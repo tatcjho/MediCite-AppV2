@@ -1,18 +1,17 @@
 :root {
-    /** primary **/
-    --ion-color-primary: #1fab9f;
-    --ion-color-primary-rgb: 48, 63, 159;
-    --ion-color-primary-shade: #00d1c0;
-    --ion-color-primary-tint: #C5CAE9;
-    --ion-color-primary-intermediate: #00d1c0;
+   /** primary **/
+   --ion-color-primary: #309f9f;
+   --ion-color-primary-rgb: 48, 63, 159;
+   --ion-color-primary-shade: #2a8d7d;
+   --ion-color-primary-tint: #C5CAE9;
+   --ion-color-primary-intermediate: #00b3a4;
 
-    /** secondary **/
-    --ion-color-secondary: #00BCD4;
-    --ion-color-secondary-rgb: 0, 188, 212;
-    --ion-color-secondary-shade: #03aac0;
-    --ion-color-secondary-tint: #B2EBF2;
-    --ion-color-secondary-intermediate: rgb(23, 180, 201);
-
+   /** secondary **/
+   --ion-color-secondary: #00BCD4;
+   --ion-color-secondary-rgb: 0, 188, 212;
+   --ion-color-secondary-shade: #03aac0;
+   --ion-color-secondary-tint: #B2EBF2;
+   --ion-color-secondary-intermediate: rgb(23, 180, 201);
     /** danger **/
     --ion-color-danger: #E91E63;
     --ion-color-danger-tint: #F8BBD0;
@@ -29,8 +28,8 @@
     --box-shadow-varient-3-hover: 0px 0px 65px 0px rgba(150, 150, 150, 0.5);
 
     --bg-color-grey: #e8e8e8;
-    --text-color: #555555;
-    --text-muted-color: #9a9a9a;
+    --text-color: #242424;
+    --text-muted-color: #5a5a5a;
     --divider-line-color: rgba(0, 0, 0, 0.05);
     --skel-base-color: rgb(235, 235, 235);
     --skel-shine-color: #f6f6f6;
@@ -60,7 +59,7 @@
     --ion-background-color: #2e2e2e;
     --ion-color-primary: var(--ion-color-secondary-intermediate);
     --card-background: #353535;
-    --text-color: #aaa;
+    --text-color: rgb(83, 83, 83);
     --header-title-color: #f4f5f8;
     --static-bg-color: #222;
     --skel-base-color: rgb(53, 53, 53);
@@ -69,14 +68,14 @@
     --card-shadow-varient-2: 0 0 2rem rgba(0, 0, 0, 0.6);
     --item-border-color: rgba(200, 200, 200, 0.05);
     --header-bottom-line: var(--ion-background-color);
-    --ion-color-dark-tint: #5b5b5b;
+    --ion-color-dark-tint: #424242;
     --ion-toggle-bg: var(--ion-color-secondary-intermediate);
     --ion-toggle-handle-bg: #ddd;
     --transparent-header-bg: #2e2e2e;
     --badge-text-color: #333;
     --desktop-bg-color: #384a59;
     --ion-color-primary-intermediate: #2e2e2e;
-    --tab-text-color: #aaa;
+    --tab-text-color: rgb(71, 71, 71);
     --mailbox-title-new-color: #cbcbcb;
     --mailbox-title-color: #999;
     --account-bg: #384a59;
