@@ -3,12 +3,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Observable, of } from 'rxjs';
 import { Usuario } from 'src/app/model/Usuario';
-import { switchMap, first, take, map } from "rxjs/operators";
-import * as firebase from "firebase/app";
-import { Platform } from '@ionic/angular';
-import { environment } from 'src/environments/environment';
-
-
+import { AuthenticationService } from '../../login/services/authentication.service';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +12,7 @@ export class RegisterService {
 
   constructor(private afAuth: AngularFireAuth,
     private afs: AngularFirestore,
-    private platform: Platform,
+    private auth: AuthenticationService
 ) { }
 
   getRol(uid: string): Observable<any[]>{
@@ -26,25 +21,34 @@ export class RegisterService {
 
   }
 
-  async insertUsuario(user: Usuario, document: string, password: string){
+  async insertUsuario(usuario: Usuario, document: string, email: string, password: string){
 
     try{
 
-      const uid = await this.afAuth.createUserWithEmailAndPassword(user.correo, password);
-      user.uid = uid.user.uid
+      const uid = await this.afAuth.createUserWithEmailAndPassword(email, password);
+      usuario.uid = uid.user.uid
 
       const refUser = this.afs.collection("usuarios")
-      const param = JSON.parse(JSON.stringify(user))
-      refUser.doc(user.uid).set(param)
+      const param = JSON.parse(JSON.stringify(usuario))
+      refUser.doc(usuario.uid).set(param)
 
-      this.afs.collection("usuarios").doc(user.uid).update({
+      this.afs.collection("usuarios").doc(usuario.uid).update({
         rol: this.afs.collection("roles").doc(document).ref
       })
 
+      const user = await this.afAuth.currentUser;
+
+      await user.updateProfile({
+        displayName: usuario.nombre + "" + usuario.apellido,
+        photoURL: user.photoURL || "https://goo.gl/7kz9qG",
+      });
+
+      return this.auth.emailPasswordLogin(email,password)
 
     }catch(error){
 
-      console.log('Error on register user', error);
+      console.log('Error on register user', error)
+      return error
       
     }
   }

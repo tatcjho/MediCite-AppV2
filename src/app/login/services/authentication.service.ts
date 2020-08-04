@@ -2,13 +2,9 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
-
-import { switchMap, first, take, map } from "rxjs/operators";
-
-
+import { switchMap, first } from "rxjs/operators";
 import * as firebase from "firebase/app";
 import { Platform } from '@ionic/angular';
-import { environment } from 'src/environments/environment';
 
 
 
@@ -53,12 +49,12 @@ export class AuthenticationService {
 
   /***************************************   EMAIL LOGIN *********************************/
 
-  async emailPasswordLogin(email: string, password: string){
+  async emailPasswordLogin(email: string, password: string) {
+    
     try {
       const emailCredential = firebase.auth.EmailAuthProvider.credential(email, password);
       const firebaseUser = await firebase.auth().signInWithCredential(emailCredential);
-      console.log('LOGIN EXITOSO: ',await this.updateUserData(firebaseUser.user, "email"))
-      return true
+      return await this.updateUserData(firebaseUser.user, "email")
     } catch (err) {
       console.log('ERROR LOGIN:', err)
       return false;
@@ -111,7 +107,7 @@ export class AuthenticationService {
     }
 
     console.log("data", JSON.stringify(data))
-    const userRef = this.afs.collection<any>('users');
+    const userRef = this.afs.collection<any>('usuarios');
 
     return userRef.doc(`${user.uid}`).set(data, { merge: true });
   } 
