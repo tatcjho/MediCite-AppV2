@@ -39,9 +39,7 @@ export class LoginPage implements OnInit {
 
   async redirect(){
     
-    let message = this.auth.emailPasswordLogin(this.correo, this.contrasena)
-
-    console.log('Return boleano:', message)
+    const message = this.auth.emailPasswordLogin(this.correo, this.contrasena)
 
     message.then(async msg => {
 

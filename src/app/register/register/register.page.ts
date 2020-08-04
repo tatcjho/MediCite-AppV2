@@ -4,7 +4,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { RegisterService } from '../services/register.service';
 import { Rol } from 'src/app/model/Rol';
 
-
 @Component({
   selector: 'app-register',
   templateUrl: './register.page.html',
@@ -21,6 +20,8 @@ export class RegisterPage implements OnInit {
   showCard = false
 
   password: string
+
+  email: string
 
   passwordToggleIcon = 'eye-outline'
   
@@ -41,7 +42,6 @@ export class RegisterPage implements OnInit {
       apellido: "",
       sexo: "",
       fecha_nac: "",
-      correo: "",
       especialidad: "",
       telf: "",
       direccion: "",
@@ -63,7 +63,7 @@ export class RegisterPage implements OnInit {
 
   redirect(){
 
-    this.RegisterService.insertUsuario(this.usuario, this.rol[0].descripcion, this.password)
+    this.RegisterService.insertUsuario(this.usuario, this.rol[0].descripcion, this.email, this.password)
     
     this.router.navigate(['home'])
 
